@@ -1,17 +1,16 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-
-
-def if_model(tau_v, R, v_th, t_step, v_t, I):
-    v = np.zeros(100)
-    for i in range(100): # simulate for 100 ms
+def if_model(tau_v, R, v_th, t_step, v_t, I, num_t = 100):
+    v = np.zeros(num_t)
+    for i in range(num_t): # simulate for 100 ms
         if v_t > v_th: # reset v_t if it exceeds threshold  
             v_t = 0 
             
         v_t = v_t + t_step/tau_v * (-v_t + R*I)
         v[i] = v_t
     return v
+
 
 if __name__ == "__main__": 
     tau_v = 10
